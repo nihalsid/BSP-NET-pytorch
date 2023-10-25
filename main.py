@@ -30,6 +30,7 @@ parser.add_argument("--end", action="store", dest="end", default=16, type=int, h
 parser.add_argument("--ae", action="store_true", dest="ae", default=False, help="True for ae [False]")
 parser.add_argument("--svr", action="store_true", dest="svr", default=False, help="True for svr [False]")
 parser.add_argument("--getz", action="store_true", dest="getz", default=False, help="True for getting latent codes [False]")
+parser.add_argument("--evalz", action="store_true", dest="evalz", default=False, help="True for getting latent codes [False]")
 parser.add_argument("--gpu", action="store", dest="gpu", default="0", help="Which GPU to use [0]")
 FLAGS = parser.parse_args()
 
@@ -48,6 +49,8 @@ if FLAGS.ae:
 		bsp_ae.train(FLAGS)
 	elif FLAGS.getz:
 		bsp_ae.get_z(FLAGS)
+	elif FLAGS.evalz:
+		bsp_ae.eval_z(FLAGS)
 	else:
 		if FLAGS.phase==0:
 			bsp_ae.test_dae3(FLAGS)
